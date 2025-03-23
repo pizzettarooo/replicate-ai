@@ -1,0 +1,13 @@
+{
+    "name": "replicate-ai",
+    "version": "1.0.0",
+    "main": "replicate.js",
+    "scripts": {
+      "start": "node replicate.js"
+    },
+    "dependencies": {
+      "node-fetch": "^2.6.7",
+      "dotenv": "^16.0.3"
+    }
+  }
+  
