@@ -4,6 +4,7 @@ require('dotenv').config();
 const replicateKey = process.env.REPLICATE_API_TOKEN;
 
 async function askReplicate(prompt) {
+  const model = "replicate/llama-2-7b-chat"; // modello pubblico
   const response = await fetch('https://api.replicate.com/v1/predictions', {
     method: 'POST',
     headers: {
@@ -11,7 +12,7 @@ async function askReplicate(prompt) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      version: 'a9758cb3b1a1f57aa920312674eb4f8ac3cf38d1092d24455a529deb6c4e65aa', // Llama-2-7B-chat
+      version: model,
       input: { prompt }
     })
   });
