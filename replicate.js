@@ -1,19 +1,22 @@
 const Replicate = require("replicate");
-require("dotenv").config();
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
 
-(async () => {
+async function ask() {
   const output = await replicate.run(
-    "replicate/llama-2-7b-chat", // modello gratuito e pubblico
+    "meta/llama-2-7b-chat", // ✅ modello pubblico e accessibile
     {
       input: {
-        prompt: "Ciao, come stai?",
+        prompt: "Ciao! Come stai?",
+        temperature: 0.5,
+        max_new_tokens: 100
       },
     }
   );
 
-  console.log("🧠 Risposta:", output);
-})();
+  console.log("🧠 Risposta AI:", output);
+}
+
+ask();
