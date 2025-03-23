@@ -11,8 +11,12 @@ async function askReplicate(prompt) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      model: 'replicate/llama-2-7b-chat',
-      input: { prompt }
+      version: '84c14755f7c3aaae8c3a2bce4fb67b68876d63ffcad9d1e3c7c1882df7f5f183',
+      input: {
+        prompt: prompt,
+        max_new_tokens: 100,
+        temperature: 0.7
+      }
     })
   });
 
