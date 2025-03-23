@@ -3,11 +3,11 @@
     "version": "1.0.0",
     "main": "replicate.js",
     "scripts": {
-      "start": "node replicate.js"
+        "start": "node replicate.js"
     },
     "dependencies": {
-      "node-fetch": "^2.6.7",
-      "dotenv": "^16.0.3"
+        "dotenv": "^16.0.3",
+        "node-fetch": "^2.6.7",
+        "replicate": "^1.0.1"
     }
-  }
-  
+}
