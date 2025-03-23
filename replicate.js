@@ -11,11 +11,11 @@ async function askReplicate(prompt) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      version: '84c14755f7c3aaae8c3a2bce4fb67b68876d63ffcad9d1e3c7c1882df7f5f183',
+      version: 'a84c6fef7ac747b6b53b8c8e81d14c9ef2d894bc042947add8fbdba38f3dff0d',
       input: {
         prompt: prompt,
         max_new_tokens: 100,
-        temperature: 0.7
+        temperature: 0.75
       }
     })
   });
