@@ -1,23 +1,22 @@
-const Replicate = require('replicate');
-require('dotenv').config();
+import Replicate from "replicate";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
 
-(async () => {
+const input = {
+  prompt: "Scrivimi una storia erotica ambientata in un castello medievale"
+};
+
+async function runAI() {
   const output = await replicate.run(
-    "replicate/llama-2-7b-chat",
-    {
-      input: {
-        prompt: `Sei una ragazza virtuale simpatica e ironica. Il tuo obiettivo è fare compagnia in modo amichevole e un po’ malizioso, senza mai superare i limiti. Rispondi a questa domanda con tono giocoso e diretto: "Cosa fai di bello stasera?"`,
-        temperature: 0.7,
-        max_new_tokens: 200,
-        top_k: 50,
-        top_p: 0.9
-      }
-    }
+    "aitechtree/nsfw-novel-generation:d1b68d1b966f96f97a2364cec456e84fda2d24d50eeb14abe14b509f2223ed97",
+    { input }
   );
 
-  console.log("💬 Risposta AI:", output);
-})();
+  console.log("📚 Risposta AI:", output);
+}
+
+runAI();
