@@ -11,11 +11,11 @@ async function askReplicate(prompt) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      version: 'a84c6fef7ac747b6b53b8c8e81d14c9ef2d894bc042947add8fbdba38f3dff0d',
+      version: 'a9758cb3b1a1f57aa920312674eb4f8ac3cf38d1092d24455a529deb6c4e65aa', // llama-2-7b-chat
       input: {
         prompt: prompt,
-        max_new_tokens: 100,
-        temperature: 0.75
+        max_new_tokens: 200,
+        temperature: 0.7
       }
     })
   });
