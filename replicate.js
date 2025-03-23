@@ -1,22 +1,28 @@
-const Replicate = require("replicate");
+const fetch = require('node-fetch');
+require('dotenv').config();
 
-const replicate = new Replicate({
-  auth: process.env.REPLICATE_API_TOKEN,
-});
+const replicateKey = process.env.REPLICATE_API_TOKEN;
 
-async function ask() {
-  const output = await replicate.run(
-    "meta/llama-2-7b-chat", // ✅ modello pubblico e accessibile
-    {
+async function askReplicate(prompt) {
+  const response = await fetch('https://api.replicate.com/v1/predictions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Token ${replicateKey}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      version: "86c6facc8f3e1c71a55737dd46ed7e9e798d6c299b1c7511d00c1fd8df0c6c67", // LLaMA 2 13B Chat
       input: {
-        prompt: "Ciao! Come stai?",
-        temperature: 0.5,
-        max_new_tokens: 100
-      },
-    }
-  );
+        prompt: prompt,
+        temperature: 0.7,
+        top_p: 0.9,
+        max_new_tokens: 300
+      }
+    })
+  });
 
-  console.log("🧠 Risposta AI:", output);
+  const data = await response.json();
+  console.log("🧠 Risposta AI:", data);
 }
 
-ask();
+askReplicate("Ciao, chi sei?");
