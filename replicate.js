@@ -1,8 +1,10 @@
 const express = require("express");
+const cors = require("cors"); // ✅
 const Replicate = require("replicate");
 require("dotenv").config();
 
 const app = express();
+app.use(cors()); // ✅ Permette richieste cross-origin (come da Vercel)
 app.use(express.json());
 
 const replicate = new Replicate({
