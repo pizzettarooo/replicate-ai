@@ -1,15 +1,13 @@
 {
-    "name": "replicate-ai",
-    "version": "1.0.0",
-    "type": "module",
-    "main": "replicate.js",
-    "scripts": {
-      "start": "node replicate.js"
-    },
-    "dependencies": {
-      "dotenv": "^16.0.3",
-      "node-fetch": "^2.6.7",
-      "replicate": "^1.0.1"
-    }
+  "name": "replicate-ai",
+  "version": "1.0.0",
+  "main": "replicate.js",
+  "scripts": {
+    "start": "node replicate.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "replicate": "^1.0.1"
   }
-  
+}

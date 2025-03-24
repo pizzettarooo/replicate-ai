@@ -1,22 +1,31 @@
-import Replicate from "replicate";
-import * as dotenv from "dotenv";
-dotenv.config();
+const express = require("express");
+const Replicate = require("replicate");
+require("dotenv").config();
+
+const app = express();
+app.use(express.json());
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
 
-const input = {
-  prompt: "Scrivimi una storia erotica ambientata in un castello medievale"
-};
+app.post("/ask", async (req, res) => {
+  const prompt = req.body.prompt;
 
-async function runAI() {
-  const output = await replicate.run(
-    "aitechtree/nsfw-novel-generation:d1b68d1b966f96f97a2364cec456e84fda2d24d50eeb14abe14b509f2223ed97",
-    { input }
-  );
+  try {
+    const output = await replicate.run(
+      "aitechthree/nsfw-novel-generation:d1b68d1b966f96f97a2364cec456e84fda2d24d50eeb14abe14b509f2223ed97",
+      { input: { prompt } }
+    );
 
-  console.log("📚 Risposta AI:", output);
-}
+    res.json({ output });
+  } catch (error) {
+    console.error("Errore:", error);
+    res.status(500).json({ error: "Errore nella richiesta a Replicate" });
+  }
+});
 
-runAI();
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`✅ Server AI in ascolto sulla porta ${PORT}`);
+});
